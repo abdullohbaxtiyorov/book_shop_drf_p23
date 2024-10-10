@@ -22,3 +22,4 @@ class Category(MPTTModel):
 class Book(SlugBasedModel):
     name = CharField(max_length=50, unique=True)
     writer = CharField(max_length=50, unique=True)
+    language = CharField(max_length=50, null=True, blank=True)
