@@ -1,4 +1,5 @@
-from django.db.models import CharField, CASCADE, TextField, ImageField, Model, ForeignKey
+from django.db.models import CharField, CASCADE, TextField, ImageField, Model, ForeignKey, DateField, IntegerField, \
+    DecimalField
 from mptt.models import MPTTModel, TreeForeignKey
 
 from apps.shared.models import TimeBasedModel
@@ -20,6 +21,18 @@ class Category(MPTTModel):
         order_insertion_by = ['name']
 
 class Book(SlugBasedModel):
-    name = CharField(max_length=50, unique=True)
-    writer = CharField(max_length=50, unique=True)
-    language = CharField(max_length=50, null=True, blank=True)
+    title = CharField(max_length=255)
+    author = ForeignKey('shops.Author', CASCADE, related_name=' books' )
+    isbn = CharField(max_length=13, unique=True)
+    publication_date = DateField()
+    pages = IntegerField()
+    price = DecimalField(max_digits=6, decimal_places=2)
+    language = CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+
+class Author(SlugBasedModel):
+    name = CharField(max_length=50)
+    def __str__(self):
+        return self.name
