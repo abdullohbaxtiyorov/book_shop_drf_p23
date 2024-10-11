@@ -51,4 +51,7 @@ class Cart(SlugBasedModel):
     price = DecimalField(max_digits=6, decimal_places=2)
     total = IntegerField
 
+class Wishlist(Model):
+    user = ForeignKey('users.User', CASCADE, related_name='wishlists')
+    book = ForeignKey('shops.Book', CASCADE, related_name='wishlists')
 
