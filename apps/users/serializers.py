@@ -1,7 +1,5 @@
-from django.core.cache import cache
-from rest_framework.exceptions import ValidationError
-from rest_framework.fields import EmailField, CharField
-from rest_framework.serializers import ModelSerializer, Serializer
+from rest_framework.serializers import ModelSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
 
@@ -9,23 +7,25 @@ from users.models import User
 class UpdateUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email']
 
 
-class EmailModelSerializer(Serializer):
-    email = EmailField(help_text='Enter email')
+class UserRegistrationSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        user.is_active = False
+        user.save()
+        return user
 
 
-class VerifyModelSerializer(Serializer):
-    email = EmailField(help_text='Enter email')
-    code = CharField(max_length=8, help_text='Enter confirmation code')
-
-    def validate(self, attrs):
-        email = attrs.get('email')
-        code = attrs.get('code')
-        cache_code = str(cache.get(email))
-
-        if code != cache_code:
-            raise ValidationError({'code': 'Code not found or timed out'})
-
-        return attrs
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['email'] = user.email
+        return token
