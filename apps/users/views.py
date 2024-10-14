@@ -14,3 +14,5 @@ class UserUpdateAPIView(UpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+# @extend_schema(tags=['send'])
