@@ -1,5 +1,11 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
+from django.db.models import Model, ManyToManyField
+
 
 class User(AbstractUser):
-    pass
+    wishlist = ManyToManyField('shops.Book', blank=True, related_name='wishlist')
+
+
+
+
+
