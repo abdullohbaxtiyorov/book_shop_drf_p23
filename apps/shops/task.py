@@ -39,7 +39,7 @@ countries = [
 # Django fixture formatida JSON yaratish
 countries_json = [
     {
-        "model": "shops.country",
+        "model": "users.country",
         "pk": idx + 1,
         "fields": {
             "name": country
@@ -49,7 +49,7 @@ countries_json = [
 ]
 
 # JSON faylga saqlash
-with open('fixtures/country.json', 'w') as file:
+with open('../users/fixtures/country.json', 'w') as file:
     json.dump(countries_json, file, indent=4)
 
 print("Davlatlar Django fixture formatida JSON faylga saqlandi.")
