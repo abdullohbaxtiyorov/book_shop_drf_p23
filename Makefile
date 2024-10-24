@@ -1,6 +1,6 @@
 mig:
-	python manage.py makemigrations
-	python manage.py migrate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
 
 load:
 	python manage.py loaddata country

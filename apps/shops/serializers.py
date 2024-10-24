@@ -1,4 +1,10 @@
-from django.template.context_processors import request
-from rest_framework import serializers
-from rest_framework.fields import HiddenField, CurrentUserDefault
+from rest_framework.serializers import ModelSerializer
+
+from apps.shops.models import Book
+
+
+class BookModelSerializer(ModelSerializer):
+    class Meta:
+        model = Book
+        extend = ()
 

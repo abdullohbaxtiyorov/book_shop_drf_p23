@@ -306,6 +306,30 @@ django = ">=3.2"
 tests = ["coverage"]
 
 [[package]]
+name = "django-jsonform"
+version = "2.23.1"
+description = "A user-friendly JSON editing form for Django admin."
+optional = false
+python-versions = ">=3.4"
+files = [
+    {file = "django_jsonform-2.23.1-py3-none-any.whl", hash = "sha256:cd5900c9f4f69d90a40b3a495aeb66bf43f562b82bfb64be40a78a51bbc04a11"},
+    {file = "django_jsonform-2.23.1.tar.gz", hash = "sha256:b75ea31263fbdde7190c1b02422587208359b19b1a9babc15ec3ed8260b26af9"},
+]
+
+[package.dependencies]
+django = ">=2.0"
+
+[[package]]
+name = "django-jsonschema"
+version = "0.2.0"
+description = "django-jsonschema converts Django Forms into JSON Schema compatibile representations"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-jsonschema-0.2.0.tar.gz", hash = "sha256:b9151cb70d031dcd2d53a7f0dfc8c2a20ec3bef5be8fa78cce18b42d27cdce54"},
+]
+
+[[package]]
 name = "django-mptt"
 version = "0.16.0"
 description = "Utilities for implementing Modified Preorder Tree Traversal with your Django Models and working with trees of Model instances."
@@ -925,4 +949,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "65419b2c1178ee3279651b6553a78ca8e2176d820cebac3f305c7ff1e4e495b4"
+content-hash = "912b2c36c7efc2a14802f90ab56aed03e1f695ad40824cb47cfbab8e2da59fa8"

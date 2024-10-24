@@ -1,8 +1,12 @@
-from drf_spectacular.utils import extend_schema
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.generics import ListAPIView
 
-from users.models import Address
+from apps.shops.models import Book
+from apps.shops.serializers import BookModelSerializer
+
+
+class BookListview(ListAPIView):
+    queryset = Book.objects.all
+    serializer_class = BookModelSerializer
 
 
 

@@ -19,7 +19,7 @@ class TimeBasedModel(Model):
 
 class SlugBasedModel(Model):
     title = CharField(max_length=255)
-    slug = CharField(max_length=255, unique=True)
+    slug = CharField(max_length=255, unique=True, editable=False)
     updated_at = DateTimeField(auto_now_add=True)
     created_at = DateTimeField(auto_now=True)
 
